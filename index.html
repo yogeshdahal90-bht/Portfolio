@@ -24,7 +24,7 @@
         /* --- Modern Hero Header --- */
         header {
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(249, 115, 22, 0.2)), 
-                        url('https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&q=80&w=1500');
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1500');
             background-size: cover;
             background-position: center;
             padding: 100px 20px;
@@ -38,7 +38,7 @@
             height: 120px;
             background: var(--card-bg);
             border: 3px solid var(--accent);
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Organic "Blob" shape */
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; 
             margin: 0 auto 20px;
             display: flex;
             align-items: center;
@@ -59,12 +59,12 @@
 
         /* --- Content Container --- */
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: -40px auto 60px;
             padding: 0 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
         /* --- Project Cards --- */
@@ -75,33 +75,36 @@
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
             box-shadow: 0 20px 40px rgba(0,0,0,0.6);
             border-color: var(--accent);
         }
 
         .card-img {
             width: 100%;
-            height: 200px;
+            height: 180px;
             object-fit: cover;
-            filter: grayscale(40%);
+            filter: grayscale(30%);
             transition: 0.4s;
         }
 
         .card:hover .card-img { filter: grayscale(0%); }
 
-        .card-content { padding: 25px; }
-        .card-content h3 { margin: 0 0 10px 0; font-size: 1.4rem; color: var(--accent); }
-        .card-content p { color: var(--text-dim); margin-bottom: 20px; height: 50px; overflow: hidden; }
+        .card-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-content h3 { margin: 0 0 10px 0; font-size: 1.25rem; color: var(--accent); }
+        .card-content p { color: var(--text-dim); margin-bottom: 20px; font-size: 0.9rem; }
 
         .btn {
+            margin-top: auto;
             display: block;
             background: linear-gradient(45deg, var(--accent), #ff9d5c);
             color: white;
-            padding: 12px;
+            padding: 10px;
             text-align: center;
             text-decoration: none;
             border-radius: 8px;
@@ -117,52 +120,61 @@
 <body>
 
 <header>
-    <!-- Animated Abstract Icon -->
     <div class="avatar-container">
         🛰️
     </div>
     <h1>Yogesh Dahal</h1>
     <p class="tagline">Spatial Investigator & Interest Explorer</p>
-    <p style="max-width: 600px; margin: 15px auto; opacity: 0.8;">
-        Everything Science
+    <p style="max-width: 600px; margin: 15px auto; opacity: 0.8; font-weight: 300; letter-spacing: 1px;">
+        EVERYTHING SCIENCE
     </p>
 </header>
 
 <div class="container">
-    <!-- Project 1 -->
+    <!-- Project 1: Contour Creator (FIXED IMAGE) -->
     <div class="card">
-        <img src="https://images.unsplash.com/photo-1541411191165-f18b6f5d1905?auto=format&fit=crop&q=80&w=600" class="card-img" alt="Terrain Data">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=600" class="card-img" alt="Topography">
         <div class="card-content">
             <h3>Contour Creator</h3>
-            <p>High-precision topographic contour mapping for engineering projects worldwide.</p>
+            <p>High-precision topographic contour mapping using digital elevation models for engineering design.</p>
             <a href="https://yogeshdahal90-bht.github.io/contourcreator/" class="btn">Explore Tool</a>
         </div>
     </div>
 
-    <!-- Project 2 -->
+    <!-- Project 2: Satellite Image Tool -->
     <div class="card">
-        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=600" class="card-img" alt="Satellite Imagery">
+        <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=600" class="card-img" alt="Satellite Imagery">
         <div class="card-content">
             <h3>Satellite Image Tool</h3>
-            <p>Advanced GEE application for 16:9 HD asset snapshots with temporal controls.</p>
+            <p>Advanced GEE application for 16:9 HD asset snapshots with temporal year/month controls.</p>
             <a href="https://yogeshdahal90-bht.github.io/Sateliteimage/" class="btn">Explore Tool</a>
         </div>
     </div>
 
-    <!-- Project 3 -->
+    <!-- Project 3: TravelPath -->
     <div class="card">
-        <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&q=80&w=600" class="card-img" alt="Adventure">
+        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=600" class="card-img" alt="Adventure">
         <div class="card-content">
             <h3>TravelPath</h3>
-            <p>Cinematic travel visualizations and path tracking for spatial storytelling.</p>
+            <p>Cinematic travel visualizations and smoothed path tracking for dynamic spatial storytelling.</p>
             <a href="https://yogeshdahal90-bht.github.io/travelpath/" class="btn">Explore Tool</a>
+        </div>
+    </div>
+
+    <!-- Project 4: Python Apps -->
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600" class="card-img" alt="Coding">
+        <div class="card-content">
+            <h3>Utility Lab</h3>
+            <p>Collection of Python-driven logic tools including a Trivia App and AI-assisted Calorie Tracker.</p>
+            <a href="https://github.com/yogeshdahal90-bht?tab=repositories" class="btn">View Source</a>
         </div>
     </div>
 </div>
 
 <footer>
     <p>Finding the intersection of infrastructure and geography.</p>
-    <p style="font-size: 0.7rem; margin-top: 20px;">© 2026 | Built with HTML5, CSS3, and GEE</p>
+    <p style="font-size: 0.7rem; margin-top: 20px; opacity: 0.5;">© 2026 | Built with passion for the Spatial Web</p>
 </footer>
 
 </body>
