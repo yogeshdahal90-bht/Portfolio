@@ -16,7 +16,7 @@
         body, html {
             height: 100%;
             margin: 0;
-            overflow: hidden; /* Prevents scrolling */
+            overflow: hidden;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg);
             color: var(--text-main);
@@ -27,30 +27,28 @@
             flex-direction: column;
         }
 
-        /* --- Compact Hero Header --- */
         header {
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(249, 115, 22, 0.2)), 
                         url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1500');
             background-size: cover;
             background-position: center;
-            padding: 30px 20px;
+            padding: 20px;
             text-align: center;
-            border-bottom: 3px solid var(--accent);
+            border-bottom: 2px solid var(--accent);
             flex-shrink: 0;
         }
 
         .avatar-container {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             background: var(--card-bg);
             border: 2px solid var(--accent);
             border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; 
-            margin: 0 auto 10px;
+            margin: 0 auto 5px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 25px;
-            box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+            font-size: 20px;
             animation: morph 6s ease-in-out infinite;
         }
 
@@ -60,84 +58,71 @@
             100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
         }
 
-        h1 { margin: 5px 0; font-size: 1.8rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-        .tagline { color: var(--accent); font-weight: bold; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; }
+        h1 { margin: 2px 0; font-size: 1.5rem; }
+        .tagline { color: var(--accent); font-weight: bold; text-transform: uppercase; letter-spacing: 2px; font-size: 0.7rem; }
 
-        /* --- One-Page Container --- */
         .container {
             flex-grow: 1;
-            max-width: 1300px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px;
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 Columns to fit on one line */
-            gap: 15px;
-            align-items: stretch;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            align-items: center;
         }
 
-        /* --- Smaller Project Cards --- */
+        /* --- Clickable Small Cards --- */
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            height: 100%;
+        }
+
         .card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 10px;
             overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             flex-direction: column;
-            max-height: 100%;
+            height: 220px; /* Controlled height */
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             border-color: var(--accent);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            background: rgba(30, 41, 59, 1);
         }
 
         .card-img {
             width: 100%;
-            height: 110px; /* Reduced height */
+            height: 90px;
             object-fit: cover;
-            filter: grayscale(20%);
+            opacity: 0.8;
         }
 
         .card-content { 
-            padding: 12px; 
-            flex-grow: 1; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: space-between;
+            padding: 10px; 
+            text-align: center;
         }
         
-        .card-content h3 { margin: 0 0 5px 0; font-size: 1rem; color: var(--accent); }
-        .card-content p { color: var(--text-dim); margin-bottom: 10px; font-size: 0.8rem; line-height: 1.3; }
-
-        .btn {
-            display: block;
-            background: linear-gradient(45deg, var(--accent), #ff9d5c);
-            color: white;
-            padding: 8px;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            transition: 0.3s;
-        }
-
-        .btn:hover { box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3); }
+        .card-content h3 { margin: 0 0 4px 0; font-size: 0.9rem; color: var(--accent); }
+        .card-content p { color: var(--text-dim); font-size: 0.75rem; line-height: 1.2; margin: 0; }
 
         footer { 
             text-align: center; 
-            padding: 10px; 
+            padding: 8px; 
             background: #070b14; 
             color: var(--text-dim); 
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             flex-shrink: 0;
         }
 
-        /* Responsive tweak for smaller screens */
-        @media (max-width: 1000px) {
+        @media (max-width: 800px) {
             .container { grid-template-columns: repeat(2, 1fr); overflow-y: auto; }
             body, html { overflow: auto; }
         }
@@ -149,53 +134,56 @@
     <div class="avatar-container">🛰️</div>
     <h1>Yogesh Dahal</h1>
     <div class="tagline">Spatial Investigator</div>
-    <p style="margin: 5px 0; opacity: 0.7; font-size: 0.7rem; letter-spacing: 1px;">EVERYTHING SCIENCE</p>
 </header>
 
 <div class="container">
-    <!-- Tool 1 -->
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1581093806997-124204d9ad9d?auto=format&fit=crop&q=80&w=400" class="card-img" alt="GEE Data">
-        <div class="card-content">
-            <h3>Image Downloader</h3>
-            <p>Direct export tool for high-resolution multispectral imagery from Google Earth Engine.</p>
-            <a href="https://yogeshdahal90-bht.github.io/SatelliteImagery_Download/" class="btn">Launch Tool</a>
+    <!-- Tool 1: Satellite Imagery Downloader -->
+    <a href="https://yogeshdahal90-bht.github.io/SatelliteImagery_Download/" class="card-link">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=400" class="card-img" alt="Satellite Data">
+            <div class="card-content">
+                <h3>Satellite Imagery Downloader</h3>
+                <p>Bulk export high-res multispectral data from Google Earth Engine.</p>
+            </div>
         </div>
-    </div>
+    </a>
 
-    <!-- Tool 2 -->
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=400" class="card-img" alt="Topography">
-        <div class="card-content">
-            <h3>Contour Creator</h3>
-            <p>High-precision topographic mapping using digital elevation models for engineering design.</p>
-            <a href="https://yogeshdahal90-bht.github.io/contourcreator/" class="btn">Launch Tool</a>
+    <!-- Tool 2: Contour Creator -->
+    <a href="https://yogeshdahal90-bht.github.io/contourcreator/" class="card-link">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=400" class="card-img" alt="Topography">
+            <div class="card-content">
+                <h3>Contour Creator</h3>
+                <p>Topographic mapping using DEMs for engineering design.</p>
+            </div>
         </div>
-    </div>
+    </a>
 
-    <!-- Tool 3 -->
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=400" class="card-img" alt="Timelapse">
-        <div class="card-content">
-            <h3>Timelapse Tool</h3>
-            <p>Advanced GEE application for generating historical timelapses on any location.</p>
-            <a href="https://yogeshdahal90-bht.github.io/Timelapse/" class="btn">Launch Tool</a>
+    <!-- Tool 3: Timelapse Tool -->
+    <a href="https://yogeshdahal90-bht.github.io/Timelapse/" class="card-link">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=400" class="card-img" alt="Landscape over time">
+            <div class="card-content">
+                <h3>Timelapse Tool</h3>
+                <p>Historical imagery sequencing for change detection analysis.</p>
+            </div>
         </div>
-    </div>
+    </a>
 
-    <!-- Tool 4 -->
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=400" class="card-img" alt="Travel Path">
-        <div class="card-content">
-            <h3>TravelPath</h3>
-            <p>Cinematic visualizations and smoothed path tracking for dynamic spatial storytelling.</p>
-            <a href="https://yogeshdahal90-bht.github.io/travelpath/" class="btn">Launch Tool</a>
+    <!-- Tool 4: TravelPath -->
+    <a href="https://yogeshdahal90-bht.github.io/travelpath/" class="card-link">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=400" class="card-img" alt="Route Mapping">
+            <div class="card-content">
+                <h3>TravelPath</h3>
+                <p>Smoothed path tracking for spatial storytelling and visualization.</p>
+            </div>
         </div>
-    </div>
+    </a>
 </div>
 
 <footer>
-    <p>Finding the intersection of infrastructure and geography. © 2026 | Built for the Spatial Web</p>
+    <p>© 2026 | Built for the Spatial Web</p>
 </footer>
 
 </body>
