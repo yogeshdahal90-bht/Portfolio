@@ -28,162 +28,178 @@
         }
 
         header {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(249, 115, 22, 0.2)), 
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(249, 115, 22, 0.1)), 
                         url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1500');
             background-size: cover;
             background-position: center;
-            padding: 20px;
+            padding: 15px;
             text-align: center;
             border-bottom: 2px solid var(--accent);
             flex-shrink: 0;
         }
 
-        .avatar-container {
-            width: 50px;
-            height: 50px;
-            background: var(--card-bg);
-            border: 2px solid var(--accent);
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; 
-            margin: 0 auto 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            animation: morph 6s ease-in-out infinite;
-        }
-
-        @keyframes morph {
-            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-            50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
-            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-        }
-
-        h1 { margin: 2px 0; font-size: 1.5rem; }
-        .tagline { color: var(--accent); font-weight: bold; text-transform: uppercase; letter-spacing: 2px; font-size: 0.7rem; }
+        h1 { margin: 0; font-size: 1.4rem; letter-spacing: 1px; }
+        .tagline { color: var(--accent); font-weight: bold; text-transform: uppercase; letter-spacing: 2px; font-size: 0.65rem; }
 
         .container {
             flex-grow: 1;
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 15px;
+            padding: 20px;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
+            gap: 15px;
             align-items: center;
         }
 
-        /* --- Clickable Small Cards --- */
         .card-link {
             text-decoration: none;
             color: inherit;
             display: block;
-            height: 100%;
+            height: 280px; /* Increased height for the half-half look */
         }
 
         .card {
-            background: rgba(30, 41, 59, 0.8);
-            backdrop-filter: blur(8px);
-            border-radius: 10px;
+            background: var(--card-bg);
+            border-radius: 12px;
             overflow: hidden;
-            transition: 0.3s;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             flex-direction: column;
-            height: 220px; /* Controlled height */
+            height: 100%;
         }
 
         .card:hover {
-            transform: translateY(-4px);
+            transform: scale(1.02);
             border-color: var(--accent);
-            background: rgba(30, 41, 59, 1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* --- Top Half: Prominent Image --- */
+        .card-top {
+            height: 50%;
+            overflow: hidden;
+            position: relative;
         }
 
         .card-img {
             width: 100%;
-            height: 90px;
+            height: 100%;
             object-fit: cover;
-            opacity: 0.8;
+            transition: 0.5s;
         }
 
-        .card-content { 
-            padding: 10px; 
+        .card:hover .card-img {
+            transform: scale(1.1);
+        }
+
+        /* --- Bottom Half: Content --- */
+        .card-bottom {
+            height: 50%;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             text-align: center;
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
         }
         
-        .card-content h3 { margin: 0 0 4px 0; font-size: 0.9rem; color: var(--accent); }
-        .card-content p { color: var(--text-dim); font-size: 0.75rem; line-height: 1.2; margin: 0; }
+        .card-bottom h3 { 
+            margin: 0 0 8px 0; 
+            font-size: 0.95rem; 
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-bottom p { 
+            color: var(--text-dim); 
+            font-size: 0.75rem; 
+            line-height: 1.4; 
+            margin: 0;
+        }
 
         footer { 
             text-align: center; 
-            padding: 8px; 
+            padding: 10px; 
             background: #070b14; 
             color: var(--text-dim); 
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             flex-shrink: 0;
+            letter-spacing: 1px;
         }
 
-        @media (max-width: 800px) {
+        @media (max-width: 900px) {
             .container { grid-template-columns: repeat(2, 1fr); overflow-y: auto; }
             body, html { overflow: auto; }
+            .card-link { height: 240px; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="avatar-container">🛰️</div>
-    <h1>Yogesh Dahal</h1>
+    <h1>YOGESH DAHAL</h1>
     <div class="tagline">Spatial Investigator</div>
 </header>
 
 <div class="container">
-    <!-- Tool 1: Satellite Imagery Downloader -->
+    <!-- 1: Satellite Imagery Downloader -->
     <a href="https://yogeshdahal90-bht.github.io/SatelliteImagery_Download/" class="card-link">
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=400" class="card-img" alt="Satellite Data">
-            <div class="card-content">
+            <div class="card-top">
+                <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=500" class="card-img" alt="Satellite Earth View">
+            </div>
+            <div class="card-bottom">
                 <h3>Satellite Imagery Downloader</h3>
-                <p>Bulk export high-res multispectral data from Google Earth Engine.</p>
+                <p>High-resolution multispectral data extraction via Google Earth Engine.</p>
             </div>
         </div>
     </a>
 
-    <!-- Tool 2: Contour Creator -->
+    <!-- 2: Contour Creator -->
     <a href="https://yogeshdahal90-bht.github.io/contourcreator/" class="card-link">
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=400" class="card-img" alt="Topography">
-            <div class="card-content">
+            <div class="card-top">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=500" class="card-img" alt="Topography Lines">
+            </div>
+            <div class="card-bottom">
                 <h3>Contour Creator</h3>
-                <p>Topographic mapping using DEMs for engineering design.</p>
+                <p>Precision topographic mapping for civil infrastructure and engineering design.</p>
             </div>
         </div>
     </a>
 
-    <!-- Tool 3: Timelapse Tool -->
+    <!-- 3: Timelapse Tool -->
     <a href="https://yogeshdahal90-bht.github.io/Timelapse/" class="card-link">
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=400" class="card-img" alt="Landscape over time">
-            <div class="card-content">
-                <h3>Timelapse Tool</h3>
-                <p>Historical imagery sequencing for change detection analysis.</p>
+            <div class="card-top">
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=500" class="card-img" alt="Temporal Change">
+            </div>
+            <div class="card-bottom">
+                <h3>Satellite Timelapse Tool</h3>
+                <p>Visualizing environmental change over time through historical sequencing.</p>
             </div>
         </div>
     </a>
 
-    <!-- Tool 4: TravelPath -->
+    <!-- 4: TravelPath -->
     <a href="https://yogeshdahal90-bht.github.io/travelpath/" class="card-link">
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=400" class="card-img" alt="Route Mapping">
-            <div class="card-content">
+            <div class="card-top">
+                <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=500" class="card-img" alt="Geographic Path">
+            </div>
+            <div class="card-bottom">
                 <h3>TravelPath</h3>
-                <p>Smoothed path tracking for spatial storytelling and visualization.</p>
+                <p>Smoothed trajectory tracking and cinematic spatial storytelling.</p>
             </div>
         </div>
     </a>
 </div>
 
 <footer>
-    <p>© 2026 | Built for the Spatial Web</p>
+    EVERYTHING SCIENCE | © 2026 | BUILT FOR THE SPATIAL WEB
 </footer>
 
 </body>
