@@ -32,7 +32,6 @@
             border-bottom: 4px solid var(--accent);
         }
 
-        /* --- THE "THOUGHT OF ME" ICON --- */
         .avatar-container {
             width: 120px;
             height: 120px;
@@ -57,7 +56,6 @@
         h1 { margin: 10px 0 0 0; font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
         .tagline { color: var(--accent); font-weight: bold; text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; }
 
-        /* --- Content Container --- */
         .container {
             max-width: 1200px;
             margin: -40px auto 60px;
@@ -67,7 +65,6 @@
             gap: 25px;
         }
 
-        /* --- Project Cards --- */
         .card {
             background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(10px);
@@ -99,8 +96,14 @@
         .card-content h3 { margin: 0 0 10px 0; font-size: 1.25rem; color: var(--accent); }
         .card-content p { color: var(--text-dim); margin-bottom: 20px; font-size: 0.9rem; }
 
-        .btn {
+        .btn-group {
+            display: flex;
+            gap: 10px;
             margin-top: auto;
+        }
+
+        .btn {
+            flex: 1;
             display: block;
             background: linear-gradient(45deg, var(--accent), #ff9d5c);
             color: white;
@@ -110,6 +113,7 @@
             border-radius: 8px;
             font-weight: bold;
             transition: 0.3s;
+            font-size: 0.85rem;
         }
 
         .btn:hover { letter-spacing: 1px; box-shadow: 0 5px 15px rgba(249, 115, 22, 0.4); }
@@ -120,9 +124,7 @@
 <body>
 
 <header>
-    <div class="avatar-container">
-        🛰️
-    </div>
+    <div class="avatar-container">🛰️</div>
     <h1>Yogesh Dahal</h1>
     <p class="tagline">Spatial Investigator & Interest Explorer</p>
     <p style="max-width: 600px; margin: 15px auto; opacity: 0.8; font-weight: 300; letter-spacing: 1px;">
@@ -131,13 +133,13 @@
 </header>
 
 <div class="container">
-    <!-- Project 1: Contour Creator (FIXED IMAGE) -->
+    <!-- Project 1: Global Change Explorer (NEW) -->
     <div class="card">
-        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=600" class="card-img" alt="Topography">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=600" class="card-img" alt="Earth Observation">
         <div class="card-content">
-            <h3>Contour Creator</h3>
-            <p>High-precision topographic contour mapping using digital elevation models for engineering design.</p>
-            <a href="https://yogeshdahal90-bht.github.io/contourcreator/" class="btn">Explore Tool</a>
+            <h3>Global Change Explorer</h3>
+            <p>Interactive GEE timelapse generator to visualize historical environmental changes across the globe.</p>
+            <a href="https://ee-yogeshdahal90.projects.earthengine.app/view/timelapse" class="btn">Explore Tool</a>
         </div>
     </div>
 
@@ -151,7 +153,27 @@
         </div>
     </div>
 
-    <!-- Project 3: TravelPath -->
+    <!-- Project 3: Image Downloader (NEW) -->
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1581093806997-124204d9ad9d?auto=format&fit=crop&q=80&w=600" class="card-img" alt="Data Export">
+        <div class="card-content">
+            <h3>GEE Image Downloader</h3>
+            <p>Seamlessly access and export high-resolution multispectral imagery directly from the GEE platform.</p>
+            <a href="https://ee-yogeshdahal90.projects.earthengine.app/view/satellite-imagery" class="btn">Explore Tool</a>
+        </div>
+    </div>
+
+    <!-- Project 4: Contour Creator -->
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=600" class="card-img" alt="Topography">
+        <div class="card-content">
+            <h3>Contour Creator</h3>
+            <p>High-precision topographic contour mapping using digital elevation models for engineering design.</p>
+            <a href="https://yogeshdahal90-bht.github.io/contourcreator/" class="btn">Explore Tool</a>
+        </div>
+    </div>
+
+    <!-- Project 5: TravelPath -->
     <div class="card">
         <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=600" class="card-img" alt="Adventure">
         <div class="card-content">
@@ -161,20 +183,23 @@
         </div>
     </div>
 
-    <!-- Project 4: Python Apps -->
+    <!-- Project 6: Utility Lab (LINKED TO LIVE TOOLS) -->
     <div class="card">
         <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600" class="card-img" alt="Coding">
         <div class="card-content">
             <h3>Utility Lab</h3>
-            <p>Collection of Python-driven logic tools including a Trivia App and AI-assisted Calorie Tracker.</p>
-            <a href="https://github.com/yogeshdahal90-bht?tab=repositories" class="btn">View Source</a>
+            <p>Collection of logic tools including an AI-assisted Calorie Tracker and Trivia App.</p>
+            <div class="btn-group">
+                <a href="https://yogeshdahal90-bht.github.io/calorietracker/" class="btn">Calorie Tracker</a>
+                <a href="https://yogeshdahal90-bht.github.io/triviaapp/" class="btn">Trivia App</a>
+            </div>
         </div>
     </div>
 </div>
 
 <footer>
     <p>Finding the intersection of infrastructure and geography.</p>
-    <p style="font-size: 0.7rem; margin-top: 20px; opacity: 0.5;">© 2026 | Built with passion for the Spatial Web</p>
+    <p style="font-size: 0.7rem; margin-top: 20px; opacity: 0.5;">© 2026 | Built for the Spatial Web</p>
 </footer>
 
 </body>
