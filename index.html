@@ -14,17 +14,17 @@
         }
 
         body, html {
-            height: 100%;
             margin: 0;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg);
             color: var(--text-main);
+            scroll-behavior: smooth;
         }
 
         body {
             display: flex;
             flex-direction: column;
-            overflow-y: auto;
+            min-height: 100vh;
         }
 
         header {
@@ -32,14 +32,13 @@
                         url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1500');
             background-size: cover;
             background-position: center;
-            padding: 30px 15px;
+            padding: 40px 15px;
             text-align: center;
             border-bottom: 2px solid var(--accent);
-            flex-shrink: 0;
         }
 
-        h1 { margin: 0; font-size: 1.8rem; letter-spacing: 2px; }
-        .tagline { color: var(--accent); font-weight: bold; text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; margin-top: 5px; }
+        h1 { margin: 0; font-size: 2rem; letter-spacing: 2px; }
+        .tagline { color: var(--accent); font-weight: bold; text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; margin-top: 8px; }
 
         .container {
             flex-grow: 1;
@@ -47,7 +46,7 @@
             margin: 0 auto;
             padding: 40px 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
             width: 100%;
             box-sizing: border-box;
@@ -57,7 +56,7 @@
             text-decoration: none;
             color: inherit;
             display: block;
-            height: 320px;
+            height: 340px;
         }
 
         .card {
@@ -78,9 +77,8 @@
         }
 
         .card-top {
-            height: 50%;
+            height: 55%;
             overflow: hidden;
-            position: relative;
         }
 
         .card-img {
@@ -95,7 +93,7 @@
         }
 
         .card-bottom {
-            height: 50%;
+            height: 45%;
             padding: 20px;
             display: flex;
             flex-direction: column;
@@ -105,27 +103,25 @@
         }
         
         .card-bottom h3 { 
-            margin: 0 0 10px 0; 
-            font-size: 1rem; 
+            margin: 0 0 12px 0; 
+            font-size: 1.1rem; 
             color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         .card-bottom p { 
             color: var(--text-dim); 
-            font-size: 0.8rem; 
+            font-size: 0.85rem; 
             line-height: 1.5; 
             margin: 0;
         }
 
         footer { 
             text-align: center; 
-            padding: 20px; 
+            padding: 25px; 
             background: #070b14; 
             color: var(--text-dim); 
-            font-size: 0.7rem;
-            flex-shrink: 0;
+            font-size: 0.75rem;
             letter-spacing: 1px;
             border-top: 1px solid rgba(255,255,255,0.05);
         }
@@ -135,18 +131,18 @@
 
 <header>
     <h1>YOGESH DAHAL</h1>
-    <div class="tagline">Spatial Investigator | Civil & GIS Expert</div>
+    <div class="tagline">Spatial Investigator</div>
 </header>
 
 <div class="container">
     <a href="https://yogeshdahal90-bht.github.io/mapping-tools/" class="card-link">
         <div class="card">
             <div class="card-top">
-                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=500" class="card-img" alt="Professional Surveying">
+                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=500" class="card-img" alt="Map Pins">
             </div>
             <div class="card-bottom">
-                <h3>Asset Survey Station V7.0</h3>
-                <p>Interactive field capture tool with coordinate plotting and precision scale management.</p>
+                <h3>Create map by clicking</h3>
+                <p>Click on map to put your points and generate custom survey layouts.</p>
             </div>
         </div>
     </a>
@@ -157,8 +153,8 @@
                 <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&q=80&w=500" class="card-img" alt="Data Grid Visualization">
             </div>
             <div class="card-bottom">
-                <h3>Bulk Asset Visualizer</h3>
-                <p>High-volume CSV data processor for instant spatial distribution and asset reporting.</p>
+                <h3>Create map with Lat Long</h3>
+                <p>Add your Google Earth coordinates and create a professional map with full layout.</p>
             </div>
         </div>
     </a>
@@ -169,8 +165,8 @@
                 <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=500" class="card-img" alt="Satellite Earth View">
             </div>
             <div class="card-bottom">
-                <h3>Multispectral Data Extractor</h3>
-                <p>Advanced GEE-powered engine for high-resolution satellite imagery acquisition.</p>
+                <h3>Download 10m satellite images</h3>
+                <p>Choose your month and year to get high-resolution 10m satellite imagery.</p>
             </div>
         </div>
     </a>
@@ -181,7 +177,7 @@
                 <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=500" class="card-img" alt="Topography Lines">
             </div>
             <div class="card-bottom">
-                <h3>Topographic Contour Engine</h3>
+                <h3>Create Contour on satellite image</h3>
                 <p>Civil engineering tool for generating precise terrain models and infrastructure grids.</p>
             </div>
         </div>
@@ -193,8 +189,8 @@
                 <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=500" class="card-img" alt="Temporal Change">
             </div>
             <div class="card-bottom">
-                <h3>Temporal Change Monitor</h3>
-                <p>Visualizing environmental evolution and infrastructure progress through historical sequencing.</p>
+                <h3>Timelapse creator</h3>
+                <p>Create a high-quality GIF of environmental changes over your chosen location.</p>
             </div>
         </div>
     </a>
@@ -205,7 +201,7 @@
                 <img src="https://images.unsplash.com/photo-1502786129293-79981df4e689?auto=format&fit=crop&q=80&w=500" class="card-img" alt="Burn Severity Mapping">
             </div>
             <div class="card-bottom">
-                <h3>Severity Impact Analyzer</h3>
+                <h3>Burn scar mapping</h3>
                 <p>Automated dNBR fire severity analysis for rapid environmental impact assessment.</p>
             </div>
         </div>
@@ -213,7 +209,7 @@
 </div>
 
 <footer>
-    ASSET MANAGEMENT & GEOSPATIAL ENGINEERING | © 2026 | BUILT FOR THE SPATIAL WEB
+    EVERYTHING SCIENCE | © 2026 | BUILT FOR THE SPATIAL WEB
 </footer>
 
 </body>
