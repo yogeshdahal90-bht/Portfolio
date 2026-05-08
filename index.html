@@ -16,7 +16,6 @@
         body, html {
             height: 100%;
             margin: 0;
-            overflow: hidden;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg);
             color: var(--text-main);
@@ -25,6 +24,7 @@
         body {
             display: flex;
             flex-direction: column;
+            overflow-y: auto;
         }
 
         header {
@@ -32,31 +32,32 @@
                         url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1500');
             background-size: cover;
             background-position: center;
-            padding: 15px;
+            padding: 30px 15px;
             text-align: center;
             border-bottom: 2px solid var(--accent);
             flex-shrink: 0;
         }
 
-        h1 { margin: 0; font-size: 1.4rem; letter-spacing: 1px; }
-        .tagline { color: var(--accent); font-weight: bold; text-transform: uppercase; letter-spacing: 2px; font-size: 0.65rem; }
+        h1 { margin: 0; font-size: 1.8rem; letter-spacing: 2px; }
+        .tagline { color: var(--accent); font-weight: bold; text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; margin-top: 5px; }
 
         .container {
             flex-grow: 1;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 40px 20px;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            align-items: center;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .card-link {
             text-decoration: none;
             color: inherit;
             display: block;
-            height: 280px; /* Increased height for the half-half look */
+            height: 320px;
         }
 
         .card {
@@ -71,12 +72,11 @@
         }
 
         .card:hover {
-            transform: scale(1.02);
+            transform: translateY(-10px);
             border-color: var(--accent);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
 
-        /* --- Top Half: Prominent Image --- */
         .card-top {
             height: 50%;
             overflow: hidden;
@@ -94,10 +94,9 @@
             transform: scale(1.1);
         }
 
-        /* --- Bottom Half: Content --- */
         .card-bottom {
             height: 50%;
-            padding: 15px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -106,34 +105,29 @@
         }
         
         .card-bottom h3 { 
-            margin: 0 0 8px 0; 
-            font-size: 0.95rem; 
+            margin: 0 0 10px 0; 
+            font-size: 1rem; 
             color: var(--accent);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
         .card-bottom p { 
             color: var(--text-dim); 
-            font-size: 0.75rem; 
-            line-height: 1.4; 
+            font-size: 0.8rem; 
+            line-height: 1.5; 
             margin: 0;
         }
 
         footer { 
             text-align: center; 
-            padding: 10px; 
+            padding: 20px; 
             background: #070b14; 
             color: var(--text-dim); 
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             flex-shrink: 0;
             letter-spacing: 1px;
-        }
-
-        @media (max-width: 900px) {
-            .container { grid-template-columns: repeat(2, 1fr); overflow-y: auto; }
-            body, html { overflow: auto; }
-            .card-link { height: 240px; }
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
     </style>
 </head>
@@ -141,81 +135,85 @@
 
 <header>
     <h1>YOGESH DAHAL</h1>
-    <div class="tagline">Spatial Investigator</div>
+    <div class="tagline">Spatial Investigator | Civil & GIS Expert</div>
 </header>
 
 <div class="container">
-    <!-- 1: Satellite Imagery Downloader -->
+    <a href="https://yogeshdahal90-bht.github.io/mapping-tools/" class="card-link">
+        <div class="card">
+            <div class="card-top">
+                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=500" class="card-img" alt="Professional Surveying">
+            </div>
+            <div class="card-bottom">
+                <h3>Asset Survey Station V7.0</h3>
+                <p>Interactive field capture tool with coordinate plotting and precision scale management.</p>
+            </div>
+        </div>
+    </a>
+
+    <a href="https://yogeshdahal90-bht.github.io/mapping-tools/bulk-plotter.html" class="card-link">
+        <div class="card">
+            <div class="card-top">
+                <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&q=80&w=500" class="card-img" alt="Data Grid Visualization">
+            </div>
+            <div class="card-bottom">
+                <h3>Bulk Asset Visualizer</h3>
+                <p>High-volume CSV data processor for instant spatial distribution and asset reporting.</p>
+            </div>
+        </div>
+    </a>
+
     <a href="https://yogeshdahal90-bht.github.io/SatelliteImagery_Download/" class="card-link">
         <div class="card">
             <div class="card-top">
                 <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=500" class="card-img" alt="Satellite Earth View">
             </div>
             <div class="card-bottom">
-                <h3>Satellite Imagery Downloader</h3>
-                <p>High-resolution multispectral data extraction via Google Earth Engine.</p>
+                <h3>Multispectral Data Extractor</h3>
+                <p>Advanced GEE-powered engine for high-resolution satellite imagery acquisition.</p>
             </div>
         </div>
     </a>
 
-    <!-- 2: Contour Creator -->
     <a href="https://yogeshdahal90-bht.github.io/contourcreator/" class="card-link">
         <div class="card">
             <div class="card-top">
                 <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=500" class="card-img" alt="Topography Lines">
             </div>
             <div class="card-bottom">
-                <h3>Contour Creator</h3>
-                <p>Precision topographic mapping for civil infrastructure and engineering design.</p>
+                <h3>Topographic Contour Engine</h3>
+                <p>Civil engineering tool for generating precise terrain models and infrastructure grids.</p>
             </div>
         </div>
     </a>
 
-    <!-- 3: Timelapse Tool -->
     <a href="https://yogeshdahal90-bht.github.io/Timelapse/" class="card-link">
         <div class="card">
             <div class="card-top">
                 <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=500" class="card-img" alt="Temporal Change">
             </div>
             <div class="card-bottom">
-                <h3>Satellite Timelapse Tool</h3>
-                <p>Visualizing environmental change over time through historical sequencing.</p>
+                <h3>Temporal Change Monitor</h3>
+                <p>Visualizing environmental evolution and infrastructure progress through historical sequencing.</p>
             </div>
         </div>
     </a>
 
-    <!-- 4: TravelPath -->
-    <a href="https://yogeshdahal90-bht.github.io/Put-Points-in-map/" class="card-link">
+    <a href="https://yogeshdahal90-bht.github.io/BurnArea/" class="card-link">
         <div class="card">
             <div class="card-top">
-                <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=500" class="card-img" alt="Geographic Path">
+                <img src="https://images.unsplash.com/photo-1502786129293-79981df4e689?auto=format&fit=crop&q=80&w=500" class="card-img" alt="Burn Severity Mapping">
             </div>
             <div class="card-bottom">
-                <h3>Your Map with points</h3>
-                <p>Add your points, and create a basic map.</p>
+                <h3>Severity Impact Analyzer</h3>
+                <p>Automated dNBR fire severity analysis for rapid environmental impact assessment.</p>
             </div>
         </div>
     </a>
-
-    <!-- 5: Burn Area Mapping Tool -->
-<a href="https://yogeshdahal90-bht.github.io/BurnArea/" class="card-link">
-    <div class="card">
-        <div class="card-top">
-            <img src="https://images.unsplash.com/photo-1502786129293-79981df4e689?auto=format&fit=crop&q=80&w=500" 
-                 class="card-img" 
-                 alt="Burn Severity Mapping">
-        </div>
-        <div class="card-bottom">
-            <h3>Burn Area Mapper</h3>
-            <p>Automated dNBR-based fire severity analysis using Google Earth Engine.</p>
-        </div>
-    </div>
-</a>
-
 </div>
 
 <footer>
-    EVERYTHING SCIENCE | © 2026 | BUILT FOR THE SPATIAL WEB
+    ASSET MANAGEMENT & GEOSPATIAL ENGINEERING | © 2026 | BUILT FOR THE SPATIAL WEB
 </footer>
 
 </body>
