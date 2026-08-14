@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yogesh Dahal | Spatial Investigator</title>
+    <title>Yogesh Dahal | Spatial Investigator & Creative Portfolio</title>
     <style>
         :root {
-            --bg: #0f172a;
-            --card-bg: #1e293b;
-            --accent: #f97316; 
+            --bg: #030712;
+            --card-bg: rgba(30, 41, 59, 0.45);
+            --accent: #f97316;
+            --accent-glow: rgba(249, 115, 22, 0.4);
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.08);
         }
 
         * {
@@ -20,89 +22,245 @@
         html, body {
             margin: 0;
             padding: 0;
-            height: 100vh;
-            overflow: hidden; /* Prevents page scrolling */
+            min-height: 100vh;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg);
             color: var(--text-main);
-            display: flex;
-            flex-direction: column;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Silky animated background blobs */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #0f172a 0%, #030712 100%);
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(100px);
+            opacity: 0.18;
+            border-radius: 50%;
+            animation: floatBlob 20s ease-in-out infinite alternate;
+        }
+
+        .blob-1 {
+            width: 550px;
+            height: 550px;
+            background: var(--accent);
+            top: -10%;
+            left: -10%;
+        }
+
+        .blob-2 {
+            width: 650px;
+            height: 650px;
+            background: #3b82f6;
+            bottom: -20%;
+            right: -10%;
+            animation-delay: -6s;
+        }
+
+        .blob-3 {
+            width: 450px;
+            height: 450px;
+            background: #8b5cf6;
+            top: 40%;
+            left: 30%;
+            animation-delay: -12s;
+        }
+
+        @keyframes floatBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 60px) scale(1.12); }
+            100% { transform: translate(-40px, -50px) scale(0.9); }
         }
 
         header {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(249, 115, 22, 0.1)), 
-                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1500');
-            background-size: cover;
-            background-position: center;
-            padding: 15px;
+            padding: 40px 20px 20px;
             text-align: center;
-            border-bottom: 2px solid var(--accent);
-            flex-shrink: 0;
+            position: relative;
+            z-index: 10;
         }
 
-        h1 { margin: 0; font-size: 1.5rem; letter-spacing: 2px; }
-        .tagline { color: var(--accent); font-weight: bold; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; margin-top: 4px; }
+        h1 { 
+            margin: 0; 
+            font-size: 2.4rem; 
+            letter-spacing: 4px; 
+            background: linear-gradient(135deg, #fff 30%, var(--text-dim));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInDown 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-        .container {
-            flex: 1;
-            max-width: 1300px;
+        .tagline { 
+            color: var(--accent); 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            font-size: 0.8rem; 
+            margin-top: 8px; 
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+        }
+
+        /* Interactive Filter Bar */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 25px 0 10px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+        }
+
+        .filter-btn {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid var(--glass-border);
+            color: var(--text-dim);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .main-container {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 15px;
+            padding: 20px 30px 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .category-section {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .category-section.hidden {
+            display: none;
+        }
+
+        .category-title {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            border-left: 3px solid var(--accent);
+            padding-left: 12px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-title span {
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            font-weight: 400;
+        }
+
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 12px;
-            width: 100%;
-            align-content: center; /* Vertically centers the grid */
+            gap: 16px;
         }
 
         .card-link {
             text-decoration: none;
             color: inherit;
             display: block;
-            height: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: silkyReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .card {
             background: var(--card-bg);
-            border-radius: 10px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 14px;
             overflow: hidden;
-            transition: 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid var(--glass-border);
             display: flex;
-            flex-direction: row; /* Horizontal layout saves vertical space */
+            flex-direction: row;
             align-items: center;
-            height: 85px; /* Compact fixed height */
-            padding: 8px;
+            height: 85px;
+            padding: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        /* Silky hover light sweep effect */
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: 0.6s;
+        }
+
+        .card:hover::after {
+            left: 100%;
         }
 
         .card:hover {
-            transform: scale(1.02);
-            border-color: var(--accent);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-            background: #25334d;
+            transform: translateY(-6px) scale(1.02);
+            border-color: rgba(249, 115, 22, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 25px var(--accent-glow);
+            background: rgba(30, 41, 59, 0.75);
         }
 
         .card-top {
-            width: 80px;
+            width: 65px;
             height: 100%;
             flex-shrink: 0;
-            border-radius: 6px;
+            border-radius: 10px;
             overflow: hidden;
+            position: relative;
         }
 
         .card-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: 0.4s;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .card:hover .card-img {
-            transform: scale(1.1);
+            transform: scale(1.15) rotate(1deg);
         }
 
         .card-bottom {
-            padding: 0 12px;
+            padding: 0 14px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -112,17 +270,22 @@
         
         .card-bottom h3 { 
             margin: 0 0 4px 0; 
-            font-size: 0.95rem; 
-            color: var(--accent);
+            font-size: 0.9rem; 
+            color: var(--text-main);
+            transition: color 0.3s ease;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
+        .card:hover .card-bottom h3 {
+            color: var(--accent);
+        }
+
         .card-bottom p { 
             color: var(--text-dim); 
             font-size: 0.75rem; 
-            line-height: 1.25; 
+            line-height: 1.3; 
             margin: 0;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -132,120 +295,343 @@
 
         footer { 
             text-align: center; 
-            padding: 10px; 
-            background: #070b14; 
+            padding: 20px; 
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(10px);
             color: var(--text-dim); 
-            font-size: 0.7rem;
-            letter-spacing: 1px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            flex-shrink: 0;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            border-top: 1px solid var(--glass-border);
+            position: relative;
+            z-index: 10;
         }
 
-        /* Allow vertical scrolling only on small mobile devices if screen height is tiny */
-        @media (max-height: 600px) {
-            html, body {
-                height: auto;
-                overflow: auto;
+        @keyframes silkyReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
+<div class="ambient-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+</div>
+
 <header>
     <h1>YOGESH DAHAL</h1>
-    <div class="tagline">Spatial Investigator</div>
+    <div class="tagline">Spatial Investigator & Creative Technologist</div>
+    
+    <!-- Interactive Category Filters -->
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterCategory('all', this)">⚡ All Projects</button>
+        <button class="filter-btn" onclick="filterCategory('spatial', this)">🗺️ Spatial & Mapping</button>
+        <button class="filter-btn" onclick="filterCategory('3d', this)">🌐 3D Engines</button>
+        <button class="filter-btn" onclick="filterCategory('audio', this)">🎵 Audio, Media & Games</button>
+        <button class="filter-btn" onclick="filterCategory('utils', this)">⚙️ Utilities & Sandbox</button>
+    </div>
 </header>
 
-<div class="container">
-    <a href="https://yogeshdahal90-bht.github.io/mapping-tools/" class="card-link">
-        <div class="card">
-            <div class="card-top">
-                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Map Pins">
-            </div>
-            <div class="card-bottom">
-                <h3>Create map by clicking</h3>
-                <p>Click on map to put points and generate survey layouts.</p>
-            </div>
-        </div>
-    </a>
+<div class="main-container">
 
-    <a href="https://yogeshdahal90-bht.github.io/mapping-tools/bulk-plotter.html" class="card-link">
-        <div class="card">
-            <div class="card-top">
-                <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Data Grid Visualization">
-            </div>
-            <div class="card-bottom">
-                <h3>Create map with Lat Long</h3>
-                <p>Add Google Earth coordinates to create a professional map.</p>
-            </div>
+    <!-- Category 1: Spatial & Mapping Tools -->
+    <div class="category-section" data-category="spatial" style="animation-delay: 0.1s;">
+        <div class="category-title">🗺️ Spatial & Mapping Tools <span>(Geospatial & Earth Observation)</span></div>
+        <div class="grid">
+            <a href="https://yogeshdahal90-bht.github.io/mapping-tools/" class="card-link" style="animation-delay: 0.15s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Map Pins"></div>
+                    <div class="card-bottom">
+                        <h3>Create map by clicking</h3>
+                        <p>Click on map to put points and generate survey layouts.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/mapping-tools/bulk-plotter.html" class="card-link" style="animation-delay: 0.2s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Data Grid"></div>
+                    <div class="card-bottom">
+                        <h3>Create map with Lat Long</h3>
+                        <p>Add Google Earth coordinates to create a professional map.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/Put-Points-in-map/" class="card-link" style="animation-delay: 0.25s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Points Map"></div>
+                    <div class="card-bottom">
+                        <h3>Put Points in Map</h3>
+                        <p>Interactive tool for coordinate plotting and marker management.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/SatelliteImagery_Download/" class="card-link" style="animation-delay: 0.3s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Satellite Earth View"></div>
+                    <div class="card-bottom">
+                        <h3>Download 10m satellite imagery</h3>
+                        <p>Select month/year to get high-res satellite imagery.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/contourcreator/" class="card-link" style="animation-delay: 0.35s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Topography Lines"></div>
+                    <div class="card-bottom">
+                        <h3>Create Contour on satellite image</h3>
+                        <p>Generate precise terrain models and infrastructure grids.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/Timelapse/" class="card-link" style="animation-delay: 0.4s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Temporal Change"></div>
+                    <div class="card-bottom">
+                        <h3>Timelapse creator</h3>
+                        <p>Create a high-quality GIF of environmental changes.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/tinyPlanet/" class="card-link" style="animation-delay: 0.45s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Tiny Planet View"></div>
+                    <div class="card-bottom">
+                        <h3>Tiny Planet creator</h3>
+                        <p>Transform 360° panoramas into stereographic projection art.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/BurnArea/" class="card-link" style="animation-delay: 0.5s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1502786129293-79981df4e689?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Burn Severity Mapping"></div>
+                    <div class="card-bottom">
+                        <h3>Burn scar mapping</h3>
+                        <p>Automated dNBR fire severity analysis tool.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/gee-hydrology-tool/" class="card-link" style="animation-delay: 0.55s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Hydrology"></div>
+                    <div class="card-bottom">
+                        <h3>GEE Hydrology Tool</h3>
+                        <p>Google Earth Engine app for watershed and water body analysis.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/hike-map/" class="card-link" style="animation-delay: 0.6s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Hike Map"></div>
+                    <div class="card-bottom">
+                        <h3>Hike Map</h3>
+                        <p>Trail mapping and hiking route visualization platform.</p>
+                    </div>
+                </div>
+            </a>
         </div>
-    </a>
+    </div>
 
-    <a href="https://yogeshdahal90-bht.github.io/SatelliteImagery_Download/" class="card-link">
-        <div class="card">
-            <div class="card-top">
-                <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Satellite Earth View">
-            </div>
-            <div class="card-bottom">
-                <h3>Download 10m satellite imagery</h3>
-                <p>Select month/year to get high-res satellite imagery.</p>
-            </div>
+    <!-- Category 2: 3D Engines & Visualizers -->
+    <div class="category-section" data-category="3d" style="animation-delay: 0.2s;">
+        <div class="category-title">🌐 3D Engines & Visualizers <span>(Three.js & Graphics)</span></div>
+        <div class="grid">
+            <a href="https://yogeshdahal90-bht.github.io/3js-visualizer-engine/" class="card-link" style="animation-delay: 0.15s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=200" class="card-img" alt="3JS Engine"></div>
+                    <div class="card-bottom">
+                        <h3>3JS Visualizer Engine</h3>
+                        <p>Three.js powered 3D graphics rendering engine.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/house-3d/" class="card-link" style="animation-delay: 0.2s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=200" class="card-img" alt="House 3D"></div>
+                    <div class="card-bottom">
+                        <h3>House 3D Model</h3>
+                        <p>Interactive architectural 3D building visualization.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/3d-dragon/" class="card-link" style="animation-delay: 0.25s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&q=80&w=200" class="card-img" alt="3D Dragon"></div>
+                    <div class="card-bottom">
+                        <h3>3D Dragon</h3>
+                        <p>Interactive 3D model showcase featuring dynamic elements.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/3D-parallax/" class="card-link" style="animation-delay: 0.3s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Parallax"></div>
+                    <div class="card-bottom">
+                        <h3>3D Parallax Effect</h3>
+                        <p>Immersive depth-of-field user interface layout.</p>
+                    </div>
+                </div>
+            </a>
         </div>
-    </a>
+    </div>
 
-    <a href="https://yogeshdahal90-bht.github.io/contourcreator/" class="card-link">
-        <div class="card">
-            <div class="card-top">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Topography Lines">
-            </div>
-            <div class="card-bottom">
-                <h3>Create Contour on satellite image</h3>
-                <p>Generate precise terrain models and infrastructure grids.</p>
-            </div>
+    <!-- Category 3: Audio, Media & Games -->
+    <div class="category-section" data-category="audio" style="animation-delay: 0.3s;">
+        <div class="category-title">🎵 Audio, Media & Games <span>(Interactive & Sound Apps)</span></div>
+        <div class="grid">
+            <a href="https://yogeshdahal90-bht.github.io/dragon-surfer/" class="card-link" style="animation-delay: 0.15s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Surfer Game"></div>
+                    <div class="card-bottom">
+                        <h3>Dragon Surfer</h3>
+                        <p>Arcade-style web game built for interactive entertainment.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/player_team_draw/" class="card-link" style="animation-delay: 0.2s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1517649763962-0c623266cf20?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Team Draw"></div>
+                    <div class="card-bottom">
+                        <h3>Player Team Draw</h3>
+                        <p>Randomized team generator and tactical board drawer.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/triviaapp/" class="card-link" style="animation-delay: 0.25s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Trivia App"></div>
+                    <div class="card-bottom">
+                        <h3>Trivia App</h3>
+                        <p>Engaging quiz application to test knowledge across categories.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/Karaoke_maker/" class="card-link" style="animation-delay: 0.3s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Karaoke"></div>
+                    <div class="card-bottom">
+                        <h3>Karaoke Maker</h3>
+                        <p>Audio synchronization and lyrics display web tool.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/music-generator/" class="card-link" style="animation-delay: 0.35s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Music Generator"></div>
+                    <div class="card-bottom">
+                        <h3>Music Generator</h3>
+                        <p>Procedural soundscape and melody creation utility.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/visualiser_1/" class="card-link" style="animation-delay: 0.4s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Visualizer"></div>
+                    <div class="card-bottom">
+                        <h3>Audio Visualizer 1</h3>
+                        <p>Real-time frequency response and spectrum display.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/visualiser_song/" class="card-link" style="animation-delay: 0.45s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Song Visualizer"></div>
+                    <div class="card-bottom">
+                        <h3>Song Visualizer</h3>
+                        <p>Dynamic track-based visual animation player.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/himym_intro/" class="card-link" style="animation-delay: 0.5s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&q=80&w=200" class="card-img" alt="HIMYM"></div>
+                    <div class="card-bottom">
+                        <h3>HIMYM Intro Maker</h3>
+                        <p>Customizable title sequence generator inspired by TV formatting.</p>
+                    </div>
+                </div>
+            </a>
         </div>
-    </a>
+    </div>
 
-    <a href="https://yogeshdahal90-bht.github.io/Timelapse/" class="card-link">
-        <div class="card">
-            <div class="card-top">
-                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Temporal Change">
-            </div>
-            <div class="card-bottom">
-                <h3>Timelapse creator</h3>
-                <p>Create a high-quality GIF of environmental changes.</p>
-            </div>
+    <!-- Category 4: Utilities & Web Experiments -->
+    <div class="category-section" data-category="utils" style="animation-delay: 0.4s;">
+        <div class="category-title">⚙️ Utilities & Web Experiments <span>(Productivity & Sandbox)</span></div>
+        <div class="grid">
+            <a href="https://yogeshdahal90-bht.github.io/calorietracker/" class="card-link" style="animation-delay: 0.15s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Calorie Tracker"></div>
+                    <div class="card-bottom">
+                        <h3>Calorie Tracker</h3>
+                        <p>Daily nutrition and energy intake monitoring tool.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/khuru/" class="card-link" style="animation-delay: 0.2s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Khuru"></div>
+                    <div class="card-bottom">
+                        <h3>Khuru App</h3>
+                        <p>Specialized utility web application.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/lagthramViewer/" class="card-link" style="animation-delay: 0.25s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Lagthram Viewer"></div>
+                    <div class="card-bottom">
+                        <h3>Lagthram Viewer</h3>
+                        <p>Document and data viewing interface.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://yogeshdahal90-bht.github.io/webapptry/" class="card-link" style="animation-delay: 0.3s;">
+                <div class="card">
+                    <div class="card-top"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Web App Experiment"></div>
+                    <div class="card-bottom">
+                        <h3>Web App Sandbox</h3>
+                        <p>Experimental web application features and prototypes.</p>
+                    </div>
+                </div>
+            </a>
         </div>
-    </a>
+    </div>
 
-    <a href="https://yogeshdahal90-bht.github.io/tinyPlanet/" class="card-link">
-        <div class="card">
-            <div class="card-top">
-                <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Tiny Planet View">
-            </div>
-            <div class="card-bottom">
-                <h3>Tiny Planet creator</h3>
-                <p>Transform 360° panoramas into stereographic projection art.</p>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://yogeshdahal90-bht.github.io/BurnArea/" class="card-link">
-        <div class="card">
-            <div class="card-top">
-                <img src="https://images.unsplash.com/photo-1502786129293-79981df4e689?auto=format&fit=crop&q=80&w=200" class="card-img" alt="Burn Severity Mapping">
-            </div>
-            <div class="card-bottom">
-                <h3>Burn scar mapping</h3>
-                <p>Automated dNBR fire severity analysis tool.</p>
-            </div>
-        </div>
-    </a>
 </div>
 
 <footer>
     EVERYTHING SCIENCE | © 2026 | BUILT FOR THE SPATIAL WEB
 </footer>
+
+<script>
+    function filterCategory(category, btn) {
+        // Update active button state
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Show/Hide sections with smooth layout transition
+        document.querySelectorAll('.category-section').forEach(section => {
+            if (category === 'all' || section.getAttribute('data-category') === category) {
+                section.classList.remove('hidden');
+            } else {
+                section.classList.add('hidden');
+            }
+        });
+    }
+</script>
 
 </body>
 </html>
